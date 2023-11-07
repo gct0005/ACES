@@ -10,13 +10,16 @@ CONFIG += c++17
 
 SOURCES += \
     ACES.cpp \
-    main.cpp
+    main.cpp \
+    spotTheDiff.cpp
 
 HEADERS += \
-    ACES.h
+    ACES.h \
+    spotTheDiff.h
 
 FORMS += \
-    ACES.ui
+    ACES.ui \
+    spotTheDiff.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
