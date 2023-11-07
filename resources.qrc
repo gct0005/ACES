@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/balloons.jpg</file>
+        <file>images/balloonsDiff.jpg</file>
+        <file>images/bananaBread.jpg</file>
+        <file>images/bananaBreadDiff.jpg</file>
+        <file>images/beach.jpg</file>
+        <file>images/beachDiff.jpg</file>
+        <file>images/cupcakes.jpg</file>
+        <file>images/cupcakesDiff.jpg</file>
+        <file>images/donut.jpg</file>
+        <file>images/donutDiff.jpg</file>
+        <file>images/honey.jpg</file>
+        <file>images/honeyDiff.jpg</file>
+        <file>images/laptop.jpg</file>
+        <file>images/laptopDiff.jpg</file>
+        <file>images/sushi.jpg</file>
+        <file>images/sushiDiff.jpg</file>
+        <file>images/twine.jpg</file>
+        <file>images/twineDiff.jpg</file>
+        <file>images/vegetable.jpg</file>
+        <file>images/vegetableDiff.jpg</file>
+    </qresource>
+</RCC>
