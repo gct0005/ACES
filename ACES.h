@@ -4,6 +4,10 @@
 #include <QWidget>
 #include "spotTheDiff.h"
 
+// Window WxH
+const int WIDTH = 800;
+const int HEIGHT = 600;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class ACES; }
 QT_END_NAMESPACE
@@ -18,6 +22,7 @@ public:
 
 private slots:
     void on_spotDiffButton_clicked();
+    void moveHome();
 
 private:
     Ui::ACES *ui;

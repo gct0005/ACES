@@ -12,3 +12,14 @@ SpotTheDiff::~SpotTheDiff()
 {
     delete ui;
 }
+
+void SpotTheDiff::drawPerimeterLines()
+{
+
+}
+
+void SpotTheDiff::on_homeButton_clicked()
+{
+    emit homeClicked();
+}
+

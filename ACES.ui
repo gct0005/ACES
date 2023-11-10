@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: black</string>
+  </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
@@ -73,7 +76,11 @@
              <pointsize>40</pointsize>
              <italic>true</italic>
              <bold>true</bold>
+             <kerning>false</kerning>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: lightslategrey</string>
            </property>
            <property name="text">
             <string>ACES</string>
@@ -109,8 +116,23 @@
            </property>
            <property name="font">
             <font>
-             <pointsize>11</pointsize>
+             <pointsize>17</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#spotDiffButton { 
+	background-color: slategrey; 
+	border-radius: 15px;
+	color: black; 
+}
+
+QPushButton#spotDiffButton:hover { 
+	background-color: rgb(142, 158, 174); 
+	border-radius: 15px;
+	border: 2px solid slategrey;
+}
+
+</string>
            </property>
            <property name="text">
             <string>Spot The Difference</string>
@@ -121,8 +143,23 @@
           <widget class="QPushButton" name="settingsButton">
            <property name="font">
             <font>
-             <pointsize>11</pointsize>
+             <pointsize>17</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#settingsButton { 
+	background-color: slategrey; 
+	border-radius: 15px;
+	color: black; 
+}
+
+QPushButton#settingsButton:hover { 
+	background-color: rgb(142, 158, 174); 
+	border-radius: 15px;
+	border: 2px solid slategrey;
+}
+
+</string>
            </property>
            <property name="text">
             <string>Settings</string>
