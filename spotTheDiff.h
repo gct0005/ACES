@@ -3,8 +3,12 @@
 
 #include <QWidget>
 #include <QGraphicsEllipseItem>
-#include <QGraphicsScene>
+//#include <QGraphicsScene>
 #include <QPixmap>
+#include <QPoint>
+#include <QList>
+#include <QSize>
+#include "differenceLocations.h"
 
 // Image dimensions
 const int IMAGE_WIDTH = 560;
@@ -12,9 +16,22 @@ const int IMAGE_HEIGHT = 747;
 
 const int NUM_IMAGES = 10;
 
+enum img {
+    Balloons = 0,
+    Banana,
+    Beach,
+    Cupcakes,
+    Donut,
+    Honey,
+    Laptop,
+    Sushi,
+    Twine,
+    Vegetable
+};
+
 struct coordinates {     // Coordinate structure for holding image difference points
-    int x,y;
-    int w,h;        // Width and height of difference (for drawing clickable objects)
+    QList<QPoint> coordinateList;   // List of difference coordinates per image
+    QList<QSize> sizeList;          // Width and height of difference (for drawing clickable objects)
 };
 
 struct images {     // Image structure for images and their different counterparts TODO MAYBE MAKE CONSTANT?
@@ -39,10 +56,6 @@ struct images {     // Image structure for images and their different counterpar
                                    QPixmap(":/images/sushiDiff.jpg"),
                                    QPixmap(":/images/twineDiff.jpg"),
                                    QPixmap(":/images/vegetableDiff.jpg")};         // Differing image
-
-    // TODO MAKE IMAGES 160% SIZE RESIZE APPLICATION
-
-    coordinates coords[NUM_IMAGES];      // Array of difference placement data
 };
 
 
@@ -61,11 +74,17 @@ public:
     void updateImageTile(const QPixmap& pixmap);
     void updateDiffTile(const QPixmap &pixmap);
 
+    void loadDiffObjects();
+    void initializeLists(img select, coordinates &coords);
+
+
 private:
     Ui::SpotTheDiff *ui;
 
     // Add Image Unit
     images imageArray;
+    img select; // selection variable for initlists func
+    coordinates coords;     // list of difference placements
 
 
 signals:

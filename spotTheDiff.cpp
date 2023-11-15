@@ -33,6 +33,48 @@ void SpotTheDiff::updateDiffTile(const QPixmap &pixmap)
     ui->diffTile->setPixmap(pixmap.scaled(IMAGE_WIDTH,IMAGE_HEIGHT));
 }
 
+void SpotTheDiff::initializeLists(img select, coordinates &coords)
+{
+    // Clear coordinates for fresh difference data
+    coords.coordinateList.clear();
+    coords.sizeList.clear();
+
+    // Copy difference data to coordinate lists for selected image
+    switch(select){
+        case Balloons: DifferenceLocations::initializeBalloonLists();
+            // copy contents of lists coords.coordinateList = DifferenceLocations::balloonCoordList;
+            break;
+        case Banana: //DifferenceLocations::initializeBananaLists();
+            // copy contents of lists
+            break;
+        case Beach: //DifferenceLocations::initializeBeachLists();
+            // copy contents of lists
+            break;
+        case Cupcakes: //DifferenceLocations::initializeCupckakesLists();
+            // copy contents of lists
+            break;
+        case Donut: //DifferenceLocations::initializeDonutLists();
+            // copy contents of lists
+            break;
+        case Honey: //DifferenceLocations::initializeHoneyLists();
+            // copy contents of lists
+            break;
+        case Laptop: //DifferenceLocations::initializeLaptopLists();
+            // copy contents of lists
+            break;
+        case Sushi: //DifferenceLocations::initializeSushiLists();
+            // copy contents of lists
+            break;
+        case Twine: //DifferenceLocations::initializeTwineLists();
+            // copy contents of lists
+            break;
+        case Vegetable: //DifferenceLocations::initializeVegetableLists();
+            // copy contents of lists
+            break;
+    }
+
+}
+
 void SpotTheDiff::on_homeButton_clicked()
 {
     emit homeClicked();

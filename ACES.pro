@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     ACES.cpp \
+    differenceLocations.cpp \
     main.cpp \
     spotTheDiff.cpp
 
 HEADERS += \
     ACES.h \
+    differenceLocations.h \
     spotTheDiff.h
 
 FORMS += \
