@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1400</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -27,14 +27,14 @@
     <rect>
      <x>9</x>
      <y>9</y>
-     <width>781</width>
-     <height>581</height>
+     <width>1381</width>
+     <height>971</height>
     </rect>
    </property>
    <widget class="QWidget" name="mainMenu">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
@@ -45,7 +45,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>240</width>
+           <width>460</width>
            <height>20</height>
           </size>
          </property>
@@ -113,6 +113,12 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>600</width>
+             <height>16777215</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -194,7 +200,7 @@ QPushButton#settingsButton:hover {
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>240</width>
+           <width>460</width>
            <height>20</height>
           </size>
          </property>

@@ -6,14 +6,17 @@ ACES::ACES(QWidget *parent)
     , ui(new Ui::ACES)
 {
     ui->setupUi(this);
-    this->setFixedSize(QSize(WIDTH, HEIGHT));
+    this->setFixedSize(QSize(WIDTH, HEIGHT));;
 
-    ui->stackedWidget->addWidget(&spotDiffGame);
-    connect(&spotDiffGame, SIGNAL(homeClicked()), this, SLOT(moveHome()));
+    spotDiffGame = new SpotTheDiff(this);
+
+    ui->stackedWidget->addWidget(spotDiffGame);
+    connect(spotDiffGame, SIGNAL(homeClicked()), this, SLOT(moveHome()));
 }
 
 ACES::~ACES()
 {
+    delete spotDiffGame;
     delete ui;
 }
 
@@ -21,6 +24,8 @@ ACES::~ACES()
 void ACES::on_spotDiffButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    // start game method call here
+
 }
 
 void ACES::moveHome()
