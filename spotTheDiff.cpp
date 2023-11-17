@@ -8,10 +8,10 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
     ui->setupUi(this);
 
     // Add images
-    updateImages(Beach);
+    updateImages(Balloons);
 
     // Add difference items
-    initializeLists(Beach);
+    initializeLists(Balloons);
     loadDiffItems();
 
     // Connect the scenes for highlighting differences on both sides
@@ -108,7 +108,7 @@ void SpotTheDiff::initializeLists(img select)
 
         case Balloons:
 
-            DifferenceLocations::initializeBalloonLists();
+        DifferenceLocations::initializeBalloonLists();
             coords.coordinateList = DifferenceLocations::balloonCoordList;
             coords.sizeList = DifferenceLocations::balloonSizeList;
             break;

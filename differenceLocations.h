@@ -11,10 +11,34 @@
 
 namespace DifferenceLocations {
 
-    // Balloons
-    extern QList<QPoint>    balloonCoordList;
-    extern QList<QSize>     balloonSizeList;
+    // Scale factor for image size (will be used to alter coords for display)
+    const qreal SCALE_FACTOR = 1.2;
 
+    // Balloons
+    // Difference coordinates at 100% scaling
+
+    extern QList<QPoint>    balloonCoordList;
+//        = {QPoint(29, 36),
+//                                         QPoint(205, 114),
+//                                         QPoint(75, 249),
+//                                         QPoint(205, 238),
+//                                         QPoint(305, 237),
+//                                         QPoint(300, 315),
+//                                         QPoint(35, 433),
+//                                         QPoint(330, 434)};
+
+    extern QList<QSize>     balloonSizeList;
+//        = {QSize(40, 40),
+//                                        QSize(50, 50),
+//                                        QSize(40, 40),
+//                                        QSize(30, 30),
+//                                        QSize(70, 70),
+//                                        QSize(60, 60),
+//                                        QSize(60, 60),
+//                                        QSize(70, 70)};
+
+
+    // Change to be just standard init list func for each
     void initializeBalloonLists();
 
     // Banana Bread
@@ -70,5 +94,7 @@ namespace DifferenceLocations {
     extern QList<QSize>     vegetableSizeList;
 
     void initializeVegetableLists();
+
+    void scalePoints(QList<QPoint> &coordinates, const qreal SCALE_FACTOR);
 }
 #endif // DIFFERENCELOCATIONS_H

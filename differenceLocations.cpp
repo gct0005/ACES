@@ -4,6 +4,8 @@
 // Coordinate finder: https://www.mobilefish.com/services/record_mouse_coordinates/record_mouse_coordinates.php
 // Solution images in google drive
 
+// Could potentially save coords in array and scale here
+
 #include "differenceLocations.h"
 
 namespace DifferenceLocations {
@@ -16,18 +18,20 @@ namespace DifferenceLocations {
     void initializeBalloonLists() {
 
         // Clear lists for re-use
-        balloonCoordList.clear();
-        balloonSizeList.clear();
+        //balloonCoordList.clear();
+        //balloonSizeList.clear();
 
-        // Add coordinate values for difference locations in balloon image
-        balloonCoordList.append(QPoint(46, 57));
-        balloonCoordList.append(QPoint(328, 182));
-        balloonCoordList.append(QPoint(120, 398));
-        balloonCoordList.append(QPoint(328, 380));
-        balloonCoordList.append(QPoint(488, 379));
-        balloonCoordList.append(QPoint(480, 504));
-        balloonCoordList.append(QPoint(56, 692));
-        balloonCoordList.append(QPoint(528, 694));
+
+        // Add coordinate values for difference locations in balloon image TODO FINISH THIS AND GET ALL METHODS IMPLEMENTED
+        balloonCoordList.append(QPoint(29, 36));
+        balloonCoordList.append(QPoint(205, 114));
+        balloonCoordList.append(QPoint(75, 249));
+        balloonCoordList.append(QPoint(205, 238));
+        balloonCoordList.append(QPoint(305, 237));
+        balloonCoordList.append(QPoint(300, 315));
+        balloonCoordList.append(QPoint(35, 433));
+        balloonCoordList.append(QPoint(330, 434));
+        scalePoints(balloonCoordList,SCALE_FACTOR);
 
         // Add size values for difference locations in balloon image
         balloonSizeList.append(QSize(40, 40));
@@ -39,7 +43,7 @@ namespace DifferenceLocations {
         balloonSizeList.append(QSize(60, 60));
         balloonSizeList.append(QSize(70, 70));
 
-        // Center the coordinates in the circle
+        // Center the coordinates in the circle TODO MAKE THIS A FUNC AND ADD TO INIT HERE (ALSO THINK ABOUT RE-SCALING?)
         for (int i = 0; i < balloonCoordList.size(); ++i) {
             balloonCoordList[i] = QPoint(balloonCoordList[i].x()-balloonSizeList[i].width()/2,
                                          balloonCoordList[i].y()-balloonSizeList[i].height()/2);
@@ -394,4 +398,12 @@ namespace DifferenceLocations {
 
         qDebug() << "Beach Lists initialized";
     }
+
+    void scalePoints(QList<QPoint> &coordinates, const qreal SCALE_FACTOR)
+    {
+        for (int i = 0; i < coordinates.size(); ++i) {
+            coordinates[i] *= SCALE_FACTOR;
+        }
+    }
+
 }

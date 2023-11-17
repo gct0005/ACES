@@ -6,7 +6,7 @@
 
 // Window WxH
 const int WIDTH = 1400;
-const int HEIGHT = 1000;
+const int HEIGHT = 720;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ACES; }

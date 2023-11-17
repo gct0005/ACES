@@ -14,9 +14,9 @@
 #include "differenceLocations.h"
 #include "differenceItem.h"
 
-// Image dimensions
-const int IMAGE_WIDTH = 560;
-const int IMAGE_HEIGHT = 747;
+// Image dimensions - image is 350 x 467 px at 100%, we want 120%
+const int IMAGE_WIDTH = 420;    // image width at 120%
+const int IMAGE_HEIGHT = 560;   // image height at 120%
 
 const int NUM_IMAGES = 10;
 
@@ -61,16 +61,16 @@ public:
                                          QPixmap(":/images/twine.jpg"),
                                          QPixmap(":/images/vegetable.jpg")};      // Normal images
 
-        QPixmap diffImg[NUM_IMAGES] = {QPixmap(":/images/balloonsDiff.jpg"),
-                                       QPixmap(":/images/bananaBreadDiff.jpg"),
-                                       QPixmap(":/images/beachDiff.jpg"),
-                                       QPixmap(":/images/cupcakesDiff.jpg"),
-                                       QPixmap(":/images/donutDiff.jpg"),
-                                       QPixmap(":/images/honeyDiff.jpg"),
-                                       QPixmap(":/images/laptopDiff.jpg"),
-                                       QPixmap(":/images/sushiDiff.jpg"),
-                                       QPixmap(":/images/twineDiff.jpg"),
-                                       QPixmap(":/images/vegetableDiff.jpg")};         // Differing image
+        QPixmap diffImg[NUM_IMAGES] =   {QPixmap(":/images/balloonsDiff.jpg"),
+                                         QPixmap(":/images/bananaBreadDiff.jpg"),
+                                         QPixmap(":/images/beachDiff.jpg"),
+                                         QPixmap(":/images/cupcakesDiff.jpg"),
+                                         QPixmap(":/images/donutDiff.jpg"),
+                                         QPixmap(":/images/honeyDiff.jpg"),
+                                         QPixmap(":/images/laptopDiff.jpg"),
+                                         QPixmap(":/images/sushiDiff.jpg"),
+                                         QPixmap(":/images/twineDiff.jpg"),
+                                         QPixmap(":/images/vegetableDiff.jpg")};         // Differing image
 
         bool viewed[NUM_IMAGES] = {false};
     };
