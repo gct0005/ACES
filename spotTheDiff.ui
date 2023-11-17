@@ -20,7 +20,7 @@
    <string notr="true">background-color: black
 </string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -47,27 +47,21 @@
      </spacer>
     </item>
     <item>
-     <widget class="QLabel" name="imageTile">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+     <widget class="QGraphicsView" name="imageView">
       <property name="maximumSize">
        <size>
         <width>560</width>
         <height>747</height>
        </size>
       </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
       <property name="styleSheet">
        <string notr="true">border: 4px solid slategrey;</string>
       </property>
-      <property name="text">
-       <string/>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
      </widget>
     </item>
@@ -88,13 +82,7 @@
      </spacer>
     </item>
     <item>
-     <widget class="QLabel" name="diffTile">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+     <widget class="QGraphicsView" name="diffView">
       <property name="maximumSize">
        <size>
         <width>560</width>
@@ -104,8 +92,11 @@
       <property name="styleSheet">
        <string notr="true">border: 4px solid slategrey;</string>
       </property>
-      <property name="text">
-       <string/>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
      </widget>
     </item>
@@ -127,7 +118,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -269,7 +260,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>1</x>

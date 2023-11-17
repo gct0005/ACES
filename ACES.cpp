@@ -20,10 +20,10 @@ ACES::~ACES()
     delete ui;
 }
 
-
 void ACES::on_spotDiffButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentWidget(spotDiffGame);
+    //ui->stackedWidget->setCurrentIndex(1);
     // start game method call here
 
 }

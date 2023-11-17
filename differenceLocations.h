@@ -5,6 +5,7 @@
 #include <QList>
 #include <QPoint>
 #include <QSize>
+#include <QDebug>
 
 // Switch case in main program for enum of names, pulls from correct list in this file
 

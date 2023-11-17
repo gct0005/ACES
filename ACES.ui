@@ -73,7 +73,7 @@
           <widget class="QLabel" name="mainLabel">
            <property name="font">
             <font>
-             <pointsize>40</pointsize>
+             <pointsize>80</pointsize>
              <italic>true</italic>
              <bold>true</bold>
              <kerning>false</kerning>
