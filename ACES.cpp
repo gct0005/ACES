@@ -6,7 +6,7 @@ ACES::ACES(QWidget *parent)
     , ui(new Ui::ACES)
 {
     ui->setupUi(this);
-    this->setFixedSize(QSize(WIDTH, HEIGHT));;
+    //this->setFixedSize(QSize(WIDTH, HEIGHT));;
 
     spotDiffGame = new SpotTheDiff(this);
 

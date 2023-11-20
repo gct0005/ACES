@@ -3,9 +3,10 @@
 DifferenceItem::DifferenceItem(qreal x, qreal y, qreal width, qreal height, QGraphicsItem *parent)
     : QGraphicsEllipseItem(x, y, width, height, parent)
 {
-    // This part is so the highlight will occur in both windows cuz pos() is being a pos
+    // These vars are so the highlight will occur in both scenes cuz pos() is being a pos
     X = x;
     Y = y;
+
     setBrush(Qt::transparent);
     pen.setColor(Qt::red);
     pen.setWidth(4);
@@ -19,8 +20,8 @@ bool DifferenceItem::correspondsTo(const DifferenceItem *other) const
         return false;  // Invalid pointer
     }
 
-    // Check if positions and sizes match
-    return (X == other->X);
+    // Check if positions match
+    return (X == other->X && Y == other->Y);
 }
 
 void DifferenceItem::highlight()

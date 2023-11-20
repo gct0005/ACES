@@ -30,6 +30,7 @@ class SpotTheDiff : public QWidget
 
 public:
 
+    // Enumerated type for all the images
     enum img {
         Balloons = 0,
         Banana,
@@ -85,33 +86,44 @@ public:
     img getNextImage();     // Selects the next image and returns enum for use in other methods
     void updateImages(img select);      // calls updateScenes with the pixmaps based on getnextimage
 
+    // Find the placements of, load, and remove difference items
+    void initializeLists(img select);
     void loadDiffItems();
     void removeItems();
-    void initializeLists(img select);
+
+    // Scale and center the differences to match image scaling
+    void scaleDiffPoints(QList<QPoint> &coordinates);
+    void centerDiffOrigins(QList<QPoint> &coordinates, const QList<QSize> sizes);
+
+    // Connects both image scenes to sync corresponding differences
     void connectScenes();
     void highlightCorrespondingItem();
 
+    // GUI advancement methods
     void advanceDifferencesDisplay();
     void advanceTimerDisplay();
 
-    void displayStartCountdown();
+    // Game logic
+    void displayStartCountdown();   // TODO implement new ui class for intro countdown confirmation
     void startGame();
     void endGame();
 
 private:
     Ui::SpotTheDiff *ui;
 
-    // Add Image Unit
-    images imageArray;
-    img select; // selection variable for initlists func
+    images imageArray;      // Array of selectable images
+    img select;             // selection variable for initlists func
     coordinates coords;     // list of difference placements
 
+    // Graphics Scenes
     QGraphicsScene imageScene;
     QGraphicsScene diffScene;
 
+    // Objects to track differences
     QVector<DifferenceItem*> differenceItems;   // Dynamic vector for allocating differenceItems unique to each image
 
 protected:
+    // Scroll wheel event filter to prevent image movement
     bool eventFilter(QObject* obj, QEvent* event) override {
         if (event->type() == QEvent::Wheel) {
             // Ignore the wheel event to prevent scrolling

@@ -12,6 +12,8 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
 
     // Add difference items
     initializeLists(Balloons);
+    scaleDiffPoints(coords.coordinateList);
+    centerDiffOrigins(coords.coordinateList, coords.sizeList);
     loadDiffItems();
 
     // Connect the scenes for highlighting differences on both sides
@@ -39,6 +41,7 @@ void SpotTheDiff::updateDiffScene(const QPixmap &pixmap)
     diffScene.addPixmap(pixmap.scaled(IMAGE_WIDTH,IMAGE_HEIGHT));
 }
 
+// Gets the next spot the difference image to be displayed
 SpotTheDiff::img SpotTheDiff::getNextImage()
 {
     //int value = QRandomGenerator::global()->bounded(NUM_IMAGES); TODO change this back
@@ -56,6 +59,58 @@ void SpotTheDiff::updateImages(img select)
     ui->diffView->setScene(&diffScene);
 
     qDebug() << "Images updated to " << select;
+}
+
+void SpotTheDiff::initializeLists(img select)
+{
+    // Clear coordinates for fresh difference data
+    coords.coordinateList.clear();
+    coords.sizeList.clear();
+
+    // Copy difference data to coordinate lists for selected image
+    switch(select){
+
+        case Balloons:
+
+            coords.coordinateList = DifferenceLocations::balloonCoordList;
+            coords.sizeList = DifferenceLocations::balloonSizeList;
+            break;
+
+        case Banana:
+
+            coords.coordinateList = DifferenceLocations::bananaCoordList;
+            coords.sizeList = DifferenceLocations::bananaSizeList;
+            break;
+
+        case Beach:
+
+            coords.coordinateList = DifferenceLocations::beachCoordList;
+            coords.sizeList = DifferenceLocations::beachSizeList;
+            break;
+
+        case Cupcakes: //DifferenceLocations::initializeCupckakesLists();
+            // copy contents of lists
+            break;
+        case Donut: //DifferenceLocations::initializeDonutLists();
+            // copy contents of lists
+            break;
+        case Honey: //DifferenceLocations::initializeHoneyLists();
+            // copy contents of lists
+            break;
+        case Laptop: //DifferenceLocations::initializeLaptopLists();
+            // copy contents of lists
+            break;
+        case Sushi: //DifferenceLocations::initializeSushiLists();
+            // copy contents of lists
+            break;
+        case Twine: //DifferenceLocations::initializeTwineLists();
+            // copy contents of lists
+            break;
+        case Vegetable: //DifferenceLocations::initializeVegetableLists();
+            // copy contents of lists
+            break;
+    }
+
 }
 
 void SpotTheDiff::loadDiffItems()
@@ -97,59 +152,20 @@ void SpotTheDiff::removeItems()
     qDebug() << "GraphicsScenes cleared";
 }
 
-void SpotTheDiff::initializeLists(img select)
+void SpotTheDiff::scaleDiffPoints(QList<QPoint> &coordinates)
 {
-    // Clear coordinates for fresh difference data
-    coords.coordinateList.clear();
-    coords.sizeList.clear();
-
-    // Copy difference data to coordinate lists for selected image
-    switch(select){
-
-        case Balloons:
-
-        DifferenceLocations::initializeBalloonLists();
-            coords.coordinateList = DifferenceLocations::balloonCoordList;
-            coords.sizeList = DifferenceLocations::balloonSizeList;
-            break;
-
-        case Banana:
-
-            DifferenceLocations::initializeBananaLists();
-            coords.coordinateList = DifferenceLocations::bananaCoordList;
-            coords.sizeList = DifferenceLocations::bananaSizeList;
-            break;
-
-        case Beach:
-
-            DifferenceLocations::initializeBeachLists();
-            coords.coordinateList = DifferenceLocations::beachCoordList;
-            coords.sizeList = DifferenceLocations::beachSizeList;
-            break;
-
-        case Cupcakes: //DifferenceLocations::initializeCupckakesLists();
-            // copy contents of lists
-            break;
-        case Donut: //DifferenceLocations::initializeDonutLists();
-            // copy contents of lists
-            break;
-        case Honey: //DifferenceLocations::initializeHoneyLists();
-            // copy contents of lists
-            break;
-        case Laptop: //DifferenceLocations::initializeLaptopLists();
-            // copy contents of lists
-            break;
-        case Sushi: //DifferenceLocations::initializeSushiLists();
-            // copy contents of lists
-            break;
-        case Twine: //DifferenceLocations::initializeTwineLists();
-            // copy contents of lists
-            break;
-        case Vegetable: //DifferenceLocations::initializeVegetableLists();
-            // copy contents of lists
-            break;
+    for (int i = 0; i < coordinates.size(); ++i) {
+        coordinates[i] *= DifferenceLocations::SCALE_FACTOR;
     }
+}
 
+void SpotTheDiff::centerDiffOrigins(QList<QPoint> &coordinates, const QList<QSize> sizes)
+{
+    // Center the coordinates in the circle
+    for (int i = 0; i < coordinates.size(); ++i) {
+        coordinates[i] = QPoint(coordinates[i].x()-sizes[i].width()/2,
+                         coordinates[i].y()-sizes[i].height()/2);
+    }
 }
 
 void SpotTheDiff::connectScenes()
@@ -207,6 +223,10 @@ void SpotTheDiff::on_restartButton_clicked()
 
     updateImages(selection);
     initializeLists(selection);
+
+    scaleDiffPoints(coords.coordinateList);
+    centerDiffOrigins(coords.coordinateList, coords.sizeList);
+
     loadDiffItems();
     connectScenes();
 
