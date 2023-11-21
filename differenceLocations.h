@@ -19,7 +19,7 @@
 namespace DifferenceLocations {
 
     // Scale factor for image size (will be used to alter coords for display)
-    extern const qreal SCALE_FACTOR;
+    extern qreal SCALE_FACTOR;
 
     // ************************* Balloons ************************* //
 

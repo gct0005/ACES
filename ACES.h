@@ -5,8 +5,8 @@
 #include "spotTheDiff.h"
 
 // Window WxH
-const int WIDTH = 1400;
-const int HEIGHT = 720;
+//const int WIDTH = 1300;
+//const int HEIGHT = 720;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ACES; }
@@ -23,6 +23,8 @@ public:
 private slots:
     void on_spotDiffButton_clicked();
     void moveHome();
+
+    void on_quitButton_clicked();
 
 private:
     Ui::ACES *ui;

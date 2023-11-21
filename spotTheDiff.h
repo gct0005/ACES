@@ -18,8 +18,8 @@
 #include "readyForm.h"
 
 // Image dimensions - image is 350 x 467 px at 100%, we want 120%
-const int IMAGE_WIDTH = 420;    // image width at 120%
-const int IMAGE_HEIGHT = 560;   // image height at 120%
+const int IMAGE_WIDTH = 350;
+const int IMAGE_HEIGHT = 467;
 
 const int NUM_IMAGES = 10;
 
@@ -98,6 +98,8 @@ public:
     void scaleDiffPoints(QList<QPoint> &coordinates);
     void centerDiffOrigins(QList<QPoint> &coordinates, const QList<QSize> sizes);
 
+    void adjustSceneSizes(qreal scaleFactor);    // Adjusts the size of the scene based on screen
+
     // Connects both image scenes to sync corresponding differences
     void connectScenes();
     void highlightCorrespondingItem();
@@ -121,6 +123,8 @@ private:
     img select;             // selection variable for initlists func
     coordinates coords;     // list of difference placements
 
+    //qreal scaleFactor;
+
     // Graphics Scenes
     QGraphicsScene imageScene;
     QGraphicsScene diffScene;
@@ -128,7 +132,7 @@ private:
     // Objects to track differences
     QVector<DifferenceItem*> differenceItems;   // Dynamic vector for allocating differenceItems unique to each image
 
-    void adjustSceneSizes();    // Adjusts the size of the scene based on screen
+
 
 protected:
     // Scroll wheel event filter to prevent image movement

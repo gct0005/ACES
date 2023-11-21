@@ -193,7 +193,7 @@ QPushButton#spotDiffButton:hover {
            </widget>
           </item>
           <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-           <widget class="QPushButton" name="settingsButton">
+           <widget class="QPushButton" name="quitButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -218,13 +218,13 @@ QPushButton#spotDiffButton:hover {
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton#settingsButton { 
+             <string notr="true">QPushButton#quitButton { 
 	background-color: slategrey; 
 	border-radius: 15px;
 	color: black; 
 }
 
-QPushButton#settingsButton:hover { 
+QPushButton#quitButton:hover { 
 	background-color: rgb(142, 158, 174); 
 	border-radius: 15px;
 	border: 2px solid slategrey;
@@ -233,7 +233,7 @@ QPushButton#settingsButton:hover {
 </string>
             </property>
             <property name="text">
-             <string>Settings</string>
+             <string>Quit</string>
             </property>
            </widget>
           </item>

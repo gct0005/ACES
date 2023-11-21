@@ -7,24 +7,17 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Setup Ready form for user to start the game
     form = new ReadyForm(this);
 
     ui->stackedWidget->addWidget(form);
     connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
 
+    // Set the ready form to be the visible widget
     ui->stackedWidget->setCurrentIndex(1);
 
-    // Add images
-//    updateImages(Balloons);
-
-//    // Add difference items
-//    initializeLists(Balloons);
-//    scaleDiffPoints(coords.coordinateList);
-//    centerDiffOrigins(coords.coordinateList, coords.sizeList);
-//    loadDiffItems();
-
-//    // Connect the scenes for highlighting differences on both sides
-//    connectScenes();
+    img selection = getNextImage();
+    updateImages(selection);
 
     // Install event filters to prevent scrolling on images
     ui->imageView->viewport()->installEventFilter(this);
@@ -39,13 +32,13 @@ SpotTheDiff::~SpotTheDiff()
 // Updates image scene
 void SpotTheDiff::updateImageScene(const QPixmap &pixmap)
 {
-    imageScene.addPixmap(pixmap.scaled(IMAGE_WIDTH,IMAGE_HEIGHT));
+    imageScene.addPixmap(pixmap.scaled(IMAGE_WIDTH*DifferenceLocations::SCALE_FACTOR,IMAGE_HEIGHT*DifferenceLocations::SCALE_FACTOR));
 }
 
 // Updates differing image scene
 void SpotTheDiff::updateDiffScene(const QPixmap &pixmap)
 {
-    diffScene.addPixmap(pixmap.scaled(IMAGE_WIDTH,IMAGE_HEIGHT));
+    diffScene.addPixmap(pixmap.scaled(IMAGE_WIDTH*DifferenceLocations::SCALE_FACTOR,IMAGE_HEIGHT*DifferenceLocations::SCALE_FACTOR));
 }
 
 // Gets the next spot the difference image to be displayed
@@ -240,40 +233,20 @@ void SpotTheDiff::StartGame()
 
 }
 
-void SpotTheDiff::adjustSceneSizes()
+
+void SpotTheDiff::adjustSceneSizes(qreal scaleFactor)
 {
-    // TODO fix scaling logic for correct appearance and when correct implement in normal operation
-//    QScreen *primaryScreen = QApplication::primaryScreen();
-
-//    QRect availableGeometry = primaryScreen->availableGeometry();
-
-//    qreal scale = qMin(availableGeometry.width() / 1300, availableGeometry.height() / 720);
-//    qDebug() << "scale = " << scale;
-
-//    QSize newSize(imageScene.width() * scale, imageScene.height() * scale);
-//    ui->imageFrame->setFixedSize(newSize);
-//    ui->imageView->setFixedSize(newSize);
-
-
-    // Calculate the scaling factors for both width and height based on the vertical resolution
-    int verticalResolution = size().height();
-    qreal scaleFactor = static_cast<qreal>(verticalResolution) / imageScene.height();
-    qDebug() << scaleFactor;
-
     imageScene.setSceneRect(imageScene.sceneRect().x(), imageScene.sceneRect().y(),
-                            imageScene.width() * scaleFactor, imageScene.height() * scaleFactor);
+                            IMAGE_WIDTH * scaleFactor, IMAGE_HEIGHT * scaleFactor);
+    diffScene.setSceneRect(diffScene.sceneRect().x(), diffScene.sceneRect().y(),
+                            IMAGE_WIDTH * scaleFactor, IMAGE_HEIGHT * scaleFactor);
 
     ui->imageView->setFixedSize(imageScene.width(), imageScene.height());
-
-    for (DifferenceItem *item : differenceItems) {
-            item->setPos(item->pos() * scaleFactor);
-    }
+    ui->diffView->setFixedSize(diffScene.width(), diffScene.height());
 
     imageScene.update();
-    // Apply the scaling factors to the image
-    //pixmapItem->setPixmap(originalPixmap.scaled(originalPixmap.size() * scaleFactorX));
-
-    //imageScene.addPixmap(imageArray.normalImg[0].scaled(IMAGE_WIDTH * scaleFactor,IMAGE_HEIGHT * scaleFactor));
+    ui->imageView->viewport()->update();
+    ui->diffView->viewport()->update();
 }
 
 
@@ -294,17 +267,5 @@ void SpotTheDiff::on_restartButton_clicked()
     connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
 
     ui->stackedWidget->setCurrentIndex(1);
-
-    removeItems();
-    img selection = getNextImage();
-
-    updateImages(selection);
-    initializeLists(selection);
-
-    scaleDiffPoints(coords.coordinateList);
-    centerDiffOrigins(coords.coordinateList, coords.sizeList);
-
-    loadDiffItems();
-    connectScenes();
 
 }
