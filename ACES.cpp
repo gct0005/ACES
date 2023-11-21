@@ -9,6 +9,7 @@ ACES::ACES(QWidget *parent)
     //this->setFixedSize(QSize(WIDTH, HEIGHT));;
 
     spotDiffGame = new SpotTheDiff(this);
+    //this->showFullScreen();   // TODO make game fullscreen and add quit button to menu
 
     ui->stackedWidget->addWidget(spotDiffGame);
     connect(spotDiffGame, SIGNAL(homeClicked()), this, SLOT(moveHome()));

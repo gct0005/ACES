@@ -7,17 +7,24 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    form = new ReadyForm(this);
+
+    ui->stackedWidget->addWidget(form);
+    connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
+
+    ui->stackedWidget->setCurrentIndex(1);
+
     // Add images
-    updateImages(Balloons);
+//    updateImages(Balloons);
 
-    // Add difference items
-    initializeLists(Balloons);
-    scaleDiffPoints(coords.coordinateList);
-    centerDiffOrigins(coords.coordinateList, coords.sizeList);
-    loadDiffItems();
+//    // Add difference items
+//    initializeLists(Balloons);
+//    scaleDiffPoints(coords.coordinateList);
+//    centerDiffOrigins(coords.coordinateList, coords.sizeList);
+//    loadDiffItems();
 
-    // Connect the scenes for highlighting differences on both sides
-    connectScenes();
+//    // Connect the scenes for highlighting differences on both sides
+//    connectScenes();
 
     // Install event filters to prevent scrolling on images
     ui->imageView->viewport()->installEventFilter(this);
@@ -209,15 +216,85 @@ void SpotTheDiff::highlightCorrespondingItem() {
     }
 }
 
+void SpotTheDiff::StartGame()
+{
+    //adjustSceneSizes();
+    ui->stackedWidget->setCurrentWidget(ui->Game);
+    qDebug() << "set widget to game";
+
+    ui->stackedWidget->removeWidget(form);
+    delete form;
+
+    removeItems();
+    img selection = getNextImage();
+
+    updateImages(selection);
+    initializeLists(selection);
+
+    scaleDiffPoints(coords.coordinateList);
+    centerDiffOrigins(coords.coordinateList, coords.sizeList);
+
+    loadDiffItems();
+    connectScenes();
+
+
+}
+
+void SpotTheDiff::adjustSceneSizes()
+{
+    // TODO fix scaling logic for correct appearance and when correct implement in normal operation
+//    QScreen *primaryScreen = QApplication::primaryScreen();
+
+//    QRect availableGeometry = primaryScreen->availableGeometry();
+
+//    qreal scale = qMin(availableGeometry.width() / 1300, availableGeometry.height() / 720);
+//    qDebug() << "scale = " << scale;
+
+//    QSize newSize(imageScene.width() * scale, imageScene.height() * scale);
+//    ui->imageFrame->setFixedSize(newSize);
+//    ui->imageView->setFixedSize(newSize);
+
+
+    // Calculate the scaling factors for both width and height based on the vertical resolution
+    int verticalResolution = size().height();
+    qreal scaleFactor = static_cast<qreal>(verticalResolution) / imageScene.height();
+    qDebug() << scaleFactor;
+
+    imageScene.setSceneRect(imageScene.sceneRect().x(), imageScene.sceneRect().y(),
+                            imageScene.width() * scaleFactor, imageScene.height() * scaleFactor);
+
+    ui->imageView->setFixedSize(imageScene.width(), imageScene.height());
+
+    for (DifferenceItem *item : differenceItems) {
+            item->setPos(item->pos() * scaleFactor);
+    }
+
+    imageScene.update();
+    // Apply the scaling factors to the image
+    //pixmapItem->setPixmap(originalPixmap.scaled(originalPixmap.size() * scaleFactorX));
+
+    //imageScene.addPixmap(imageArray.normalImg[0].scaled(IMAGE_WIDTH * scaleFactor,IMAGE_HEIGHT * scaleFactor));
+}
+
 
 void SpotTheDiff::on_homeButton_clicked()
 {
     emit homeClicked();
+    // pause game
 }
 
 
 void SpotTheDiff::on_restartButton_clicked()
 {
+    //adjustSceneSizes();
+
+    form = new ReadyForm(this);     // TODO make this its own form with selections to replay current or go to new (Maybe add image selection screen?)
+
+    ui->stackedWidget->addWidget(form);
+    connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
+
+    ui->stackedWidget->setCurrentIndex(1);
+
     removeItems();
     img selection = getNextImage();
 

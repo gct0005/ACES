@@ -13,16 +13,19 @@ SOURCES += \
     differenceItem.cpp \
     differenceLocations.cpp \
     main.cpp \
+    readyForm.cpp \
     spotTheDiff.cpp
 
 HEADERS += \
     ACES.h \
     differenceItem.h \
     differenceLocations.h \
+    readyForm.h \
     spotTheDiff.h
 
 FORMS += \
     ACES.ui \
+    readyForm.ui \
     spotTheDiff.ui
 
 # Default rules for deployment.

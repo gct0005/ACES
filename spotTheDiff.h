@@ -8,11 +8,14 @@
 #include <QPoint>
 #include <QList>
 #include <QRandomGenerator>
+#include <QResizeEvent>
 #include <QSize>
+#include <QScreen>
 #include <QVector>
 #include <QWheelEvent>
 #include "differenceLocations.h"
 #include "differenceItem.h"
+#include "readyForm.h"
 
 // Image dimensions - image is 350 x 467 px at 100%, we want 120%
 const int IMAGE_WIDTH = 420;    // image width at 120%
@@ -105,11 +108,14 @@ public:
 
     // Game logic
     void displayStartCountdown();   // TODO implement new ui class for intro countdown confirmation
-    void startGame();
+    void initGame();    // Method potentially for when selecting std from menu and need to restart.
+
     void endGame();
 
 private:
     Ui::SpotTheDiff *ui;
+
+    ReadyForm *form;
 
     images imageArray;      // Array of selectable images
     img select;             // selection variable for initlists func
@@ -121,6 +127,8 @@ private:
 
     // Objects to track differences
     QVector<DifferenceItem*> differenceItems;   // Dynamic vector for allocating differenceItems unique to each image
+
+    void adjustSceneSizes();    // Adjusts the size of the scene based on screen
 
 protected:
     // Scroll wheel event filter to prevent image movement
@@ -136,10 +144,18 @@ protected:
         return QWidget::eventFilter(obj, event);
     }
 
+//    void resizeEvent(QResizeEvent *event) override
+//    {
+//        // Handle resize events to update the scaling when the window is resized
+//        Q_UNUSED(event);
+//        adjustSceneSizes();
+//    }
+
 signals:
     void homeClicked();
 
 private slots:
+    void StartGame();
     void on_homeButton_clicked();
 
     void on_restartButton_clicked();
