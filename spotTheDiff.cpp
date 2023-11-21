@@ -44,13 +44,11 @@ void SpotTheDiff::updateDiffScene(const QPixmap &pixmap)
 // Gets the next spot the difference image to be displayed
 SpotTheDiff::img SpotTheDiff::getNextImage()
 {
-    //int value = QRandomGenerator::global()->bounded(NUM_IMAGES); TODO change this back
-    int value = QRandomGenerator::global()->bounded(3);
+    int value = QRandomGenerator::global()->bounded(NUM_IMAGES);
 
     if (imagesRemaining == 0) {
         // Currently reset the images viewed status
-        //imagesRemaining = NUM_IMAGES;
-        imagesRemaining = 3;
+        imagesRemaining = NUM_IMAGES;
 
         for (int i = 0; i < 3/*NUM_IMAGES*/; ++i) {
             imageArray.viewed[i] = false;
@@ -59,7 +57,7 @@ SpotTheDiff::img SpotTheDiff::getNextImage()
     }
 
     while (imageArray.viewed[value] == true && imagesRemaining != 0) {
-       value = QRandomGenerator::global()->bounded(3);
+       value = QRandomGenerator::global()->bounded(NUM_IMAGES);
     }
 
     imageArray.viewed[value] = true;
@@ -107,26 +105,46 @@ void SpotTheDiff::initializeLists(img select)
             coords.sizeList = DifferenceLocations::beachSizeList;
             break;
 
-        case Cupcakes: //DifferenceLocations::initializeCupckakesLists();
-            // copy contents of lists
+        case Cupcakes:
+
+            coords.coordinateList = DifferenceLocations::cupcakesCoordList;
+            coords.sizeList = DifferenceLocations::cupcakesSizeList;
             break;
-        case Donut: //DifferenceLocations::initializeDonutLists();
-            // copy contents of lists
+
+        case Donut:
+
+            coords.coordinateList = DifferenceLocations::donutCoordList;
+            coords.sizeList = DifferenceLocations::donutSizeList;
             break;
-        case Honey: //DifferenceLocations::initializeHoneyLists();
-            // copy contents of lists
+
+        case Honey:
+
+            coords.coordinateList = DifferenceLocations::honeyCoordList;
+            coords.sizeList = DifferenceLocations::honeySizeList;
             break;
-        case Laptop: //DifferenceLocations::initializeLaptopLists();
-            // copy contents of lists
+
+        case Laptop:
+
+            coords.coordinateList = DifferenceLocations::laptopCoordList;
+            coords.sizeList = DifferenceLocations::laptopSizeList;
             break;
-        case Sushi: //DifferenceLocations::initializeSushiLists();
-            // copy contents of lists
+
+        case Sushi:
+
+            coords.coordinateList = DifferenceLocations::sushiCoordList;
+            coords.sizeList = DifferenceLocations::sushiSizeList;
             break;
-        case Twine: //DifferenceLocations::initializeTwineLists();
-            // copy contents of lists
+
+        case Twine:
+
+            coords.coordinateList = DifferenceLocations::twineCoordList;
+            coords.sizeList = DifferenceLocations::twineSizeList;
             break;
-        case Vegetable: //DifferenceLocations::initializeVegetableLists();
-            // copy contents of lists
+
+        case Vegetable:
+
+            coords.coordinateList = DifferenceLocations::vegetableCoordList;
+            coords.sizeList = DifferenceLocations::vegetableSizeList;
             break;
     }
 

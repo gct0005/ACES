@@ -123,8 +123,7 @@ private:
     img select;             // selection variable for initlists func
     coordinates coords;     // list of difference placements
 
-    int imagesRemaining = 3;
-    //int imagesRemaining = NUM_IMAGES;
+    int imagesRemaining = NUM_IMAGES;
 
     // Graphics Scenes
     QGraphicsScene imageScene;
@@ -159,7 +158,6 @@ private slots:
 
     void on_restartButton_clicked();
 
-    //void customWheelEvent(QWheelEvent* event);
 };
 
 #endif // SPOTTHEDIFF_H
