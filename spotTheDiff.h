@@ -95,8 +95,8 @@ public:
     void removeItems();
 
     // Scale and center the differences to match image scaling
-    void scaleDiffPoints(QList<QPoint> &coordinates);
-    void centerDiffOrigins(QList<QPoint> &coordinates, const QList<QSize> sizes);
+    void scaleDiffPoints();
+    void centerDiffOrigins();
 
     void adjustSceneSizes(qreal scaleFactor);    // Adjusts the size of the scene based on screen
 

@@ -26,14 +26,14 @@ namespace DifferenceLocations {
                                       QPoint(35, 433),
                                       QPoint(330, 434)};
 
-    QList<QSize> balloonSizeList = {QSize(50, 50),
-                                    QSize(60, 60),
-                                    QSize(50, 50),
+    QList<QSize> balloonSizeList = {QSize(25, 25),
+                                    QSize(30, 30),
+                                    QSize(25, 25),
+                                    QSize(20, 20),
                                     QSize(40, 40),
-                                    QSize(80, 80),
-                                    QSize(70, 70),
-                                    QSize(100, 100),
-                                    QSize(100, 100)};
+                                    QSize(35, 35),
+                                    QSize(50, 50),
+                                    QSize(50, 50)};
 
 
     // *********************** Banana Bread *********************** //
@@ -47,14 +47,14 @@ namespace DifferenceLocations {
                                      QPoint(254,254),
                                      QPoint(106,412)};
 
-    QList<QSize> bananaSizeList = {QSize(70, 70),
-                                   QSize(70, 70),
-                                   QSize(70, 70),
-                                   QSize(70, 70),
-                                   QSize(60, 60),
-                                   QSize(50, 50),
-                                   QSize(75, 75),
-                                   QSize(70, 70)};
+    QList<QSize> bananaSizeList = {QSize(35, 35),
+                                   QSize(35, 35),
+                                   QSize(35, 35),
+                                   QSize(35, 35),
+                                   QSize(30, 30),
+                                   QSize(25, 25),
+                                   QSize(37, 37),
+                                   QSize(35, 35)};
 
 
     // *************************** Beach ************************** //
@@ -67,13 +67,13 @@ namespace DifferenceLocations {
                                     QPoint(46,303),
                                     QPoint(20,394)};
 
-    QList<QSize> beachSizeList = {QSize(50, 50),
-                                  QSize(70, 70),
-                                  QSize(70, 70),
-                                  QSize(80, 80),
-                                  QSize(80, 80),
-                                  QSize(60, 60),
-                                  QSize(90, 90)};
+    QList<QSize> beachSizeList = {QSize(25, 25),
+                                  QSize(35, 35),
+                                  QSize(35, 35),
+                                  QSize(40, 40),
+                                  QSize(40, 40),
+                                  QSize(30, 30),
+                                  QSize(45, 45)};
 
     // ************************* Cupcakes ************************* //
 
@@ -85,13 +85,13 @@ namespace DifferenceLocations {
                                        QPoint(316,292),
                                        QPoint(311,426)};
 
-    QList<QSize> cupcakesSizeList = {QSize(60, 60),
-                                     QSize(100, 100),
-                                     QSize(130, 130),
+    QList<QSize> cupcakesSizeList = {QSize(30, 30),
+                                     QSize(50, 50),
+                                     QSize(65, 65),
+                                     QSize(30, 30),
                                      QSize(60, 60),
-                                     QSize(120, 120),
-                                     QSize(180, 180),
-                                     QSize(100, 100)};
+                                     QSize(90, 90),
+                                     QSize(50, 50)};
 
     // ************************** Donut *************************** //
 
@@ -104,14 +104,14 @@ namespace DifferenceLocations {
                                     QPoint(243,426),
                                     QPoint(296,490)};
 
-    QList<QSize> donutSizeList = {QSize(70, 70),
-                                  QSize(60, 60),
-                                  QSize(40, 40),
-                                  QSize(40, 40),
-                                  QSize(40, 40),
-                                  QSize(70, 70),
-                                  QSize(60, 60),
-                                  QSize(240, 240)};
+    QList<QSize> donutSizeList = {QSize(35, 35),
+                                  QSize(30, 30),
+                                  QSize(20, 20),
+                                  QSize(20, 20),
+                                  QSize(20, 20),
+                                  QSize(35, 35),
+                                  QSize(30, 30),
+                                  QSize(120, 120)};
 
 
     // *************************** Honey ************************** //
@@ -123,12 +123,12 @@ namespace DifferenceLocations {
                                     QPoint(125,404),
                                     QPoint(270,389)};
 
-    QList<QSize> honeySizeList = {QSize(60, 60),
-                                  QSize(60, 60),
-                                  QSize(55, 55),
-                                  QSize(60, 60),
-                                  QSize(60, 60),
-                                  QSize(60, 60)};
+    QList<QSize> honeySizeList = {QSize(30, 30),
+                                  QSize(30, 30),
+                                  QSize(28, 28),
+                                  QSize(30, 30),
+                                  QSize(30, 30),
+                                  QSize(30, 30)};
 
 
     // ************************** Laptop ************************** //
@@ -139,11 +139,11 @@ namespace DifferenceLocations {
                                      QPoint(148,264),
                                      QPoint(131,443)};
 
-    QList<QSize> laptopSizeList = {QSize(160, 160),
-                                   QSize(50, 50),
-                                   QSize(80, 80),
-                                   QSize(70, 70),
-                                   QSize(85, 85)};
+    QList<QSize> laptopSizeList = {QSize(80, 80),
+                                   QSize(25, 25),
+                                   QSize(40, 40),
+                                   QSize(35, 35),
+                                   QSize(42, 42)};
 
 
     // ************************** Sushi *************************** //
@@ -158,15 +158,15 @@ namespace DifferenceLocations {
                                     QPoint(342,339),
                                     QPoint(142,465)};
 
-    QList<QSize> sushiSizeList = {QSize(110, 110),
-                                  QSize(90, 90),
-                                  QSize(100, 100),
+    QList<QSize> sushiSizeList = {QSize(55, 55),
+                                  QSize(45, 45),
+                                  QSize(50, 50),
+                                  QSize(35, 35),
+                                  QSize(55, 55),
+                                  QSize(80, 80),
                                   QSize(70, 70),
-                                  QSize(110, 110),
-                                  QSize(160, 160),
-                                  QSize(140, 140),
-                                  QSize(130, 130),
-                                  QSize(140, 140)};
+                                  QSize(65, 65),
+                                  QSize(70, 70)};
 
 
     // *************************** Twine ************************** //
@@ -180,14 +180,14 @@ namespace DifferenceLocations {
                                     QPoint(191,352),
                                     QPoint(259,336)};
 
-    QList<QSize> twineSizeList = {QSize(180, 180),
-                                  QSize(70, 70),
-                                  QSize(70, 70),
-                                  QSize(110, 110),
-                                  QSize(110, 110),
-                                  QSize(80, 80),
-                                  QSize(80, 80),
-                                  QSize(170, 170)};
+    QList<QSize> twineSizeList = {QSize(90, 90),
+                                  QSize(35, 35),
+                                  QSize(35, 35),
+                                  QSize(55, 55),
+                                  QSize(55, 55),
+                                  QSize(40, 40),
+                                  QSize(40, 40),
+                                  QSize(85, 85)};
 
     // ************************* Vegetable ************************ //
 
@@ -199,12 +199,12 @@ namespace DifferenceLocations {
                                         QPoint(276,214),
                                         QPoint(167,338)};
 
-    QList<QSize> vegetableSizeList = {QSize(90, 90),
-                                      QSize(80, 80),
-                                      QSize(70, 70),
-                                      QSize(70, 70),
-                                      QSize(110, 110),
-                                      QSize(100, 100),
-                                      QSize(80, 80)};
+    QList<QSize> vegetableSizeList = {QSize(45, 45),
+                                      QSize(40, 40),
+                                      QSize(35, 35),
+                                      QSize(35, 35),
+                                      QSize(55, 55),
+                                      QSize(50, 50),
+                                      QSize(40, 40)};
 
 }

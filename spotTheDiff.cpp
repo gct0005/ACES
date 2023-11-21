@@ -189,19 +189,20 @@ void SpotTheDiff::removeItems()
     qDebug() << "GraphicsScenes cleared";
 }
 
-void SpotTheDiff::scaleDiffPoints(QList<QPoint> &coordinates)
+void SpotTheDiff::scaleDiffPoints()
 {
-    for (int i = 0; i < coordinates.size(); ++i) {
-        coordinates[i] *= DifferenceLocations::SCALE_FACTOR;
+    for (int i = 0; i < coords.coordinateList.size(); ++i) {
+        coords.coordinateList[i] *= DifferenceLocations::SCALE_FACTOR;
+        coords.sizeList[i] *= DifferenceLocations::SCALE_FACTOR;
     }
 }
 
-void SpotTheDiff::centerDiffOrigins(QList<QPoint> &coordinates, const QList<QSize> sizes)
+void SpotTheDiff::centerDiffOrigins()
 {
     // Center the coordinates in the circle
-    for (int i = 0; i < coordinates.size(); ++i) {
-        coordinates[i] = QPoint(coordinates[i].x()-sizes[i].width()/2,
-                         coordinates[i].y()-sizes[i].height()/2);
+    for (int i = 0; i < coords.coordinateList.size(); ++i) {
+        coords.coordinateList[i] = QPoint(coords.coordinateList[i].x()-coords.sizeList[i].width()/2,
+                         coords.coordinateList[i].y()-coords.sizeList[i].height()/2);
     }
 }
 
@@ -261,8 +262,8 @@ void SpotTheDiff::StartGame()
     updateImages(selection);
     initializeLists(selection);
 
-    scaleDiffPoints(coords.coordinateList);
-    centerDiffOrigins(coords.coordinateList, coords.sizeList);
+    scaleDiffPoints();
+    centerDiffOrigins();
 
     loadDiffItems();
     connectScenes();
