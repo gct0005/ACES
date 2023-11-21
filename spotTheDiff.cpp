@@ -16,8 +16,8 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
     // Set the ready form to be the visible widget
     ui->stackedWidget->setCurrentIndex(1);
 
-    img selection = getNextImage();
-    updateImages(selection);
+//    img selection = getNextImage();
+//    updateImages(selection);
 
     // Install event filters to prevent scrolling on images
     ui->imageView->viewport()->installEventFilter(this);
@@ -46,6 +46,25 @@ SpotTheDiff::img SpotTheDiff::getNextImage()
 {
     //int value = QRandomGenerator::global()->bounded(NUM_IMAGES); TODO change this back
     int value = QRandomGenerator::global()->bounded(3);
+
+    if (imagesRemaining == 0) {
+        // Currently reset the images viewed status
+        //imagesRemaining = NUM_IMAGES;
+        imagesRemaining = 3;
+
+        for (int i = 0; i < 3/*NUM_IMAGES*/; ++i) {
+            imageArray.viewed[i] = false;
+        }
+        // Eventually make the game end
+    }
+
+    while (imageArray.viewed[value] == true && imagesRemaining != 0) {
+       value = QRandomGenerator::global()->bounded(3);
+    }
+
+    imageArray.viewed[value] = true;
+    imagesRemaining--;
+
     return static_cast<img>(value);
 }
 

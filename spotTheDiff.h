@@ -17,7 +17,7 @@
 #include "differenceItem.h"
 #include "readyForm.h"
 
-// Image dimensions - image is 350 x 467 px at 100%, we want 120%
+// Image dimensions - image is 350 x 467 px at 100%
 const int IMAGE_WIDTH = 350;
 const int IMAGE_HEIGHT = 467;
 
@@ -123,7 +123,8 @@ private:
     img select;             // selection variable for initlists func
     coordinates coords;     // list of difference placements
 
-    //qreal scaleFactor;
+    int imagesRemaining = 3;
+    //int imagesRemaining = NUM_IMAGES;
 
     // Graphics Scenes
     QGraphicsScene imageScene;
@@ -148,12 +149,6 @@ protected:
         return QWidget::eventFilter(obj, event);
     }
 
-//    void resizeEvent(QResizeEvent *event) override
-//    {
-//        // Handle resize events to update the scaling when the window is resized
-//        Q_UNUSED(event);
-//        adjustSceneSizes();
-//    }
 
 signals:
     void homeClicked();
