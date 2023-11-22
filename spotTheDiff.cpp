@@ -42,10 +42,15 @@ SpotTheDiff::img SpotTheDiff::getNextImage()
         // Currently reset the images viewed status
         imagesRemaining = NUM_IMAGES;
 
-        for (int i = 0; i < 3/*NUM_IMAGES*/; ++i) {
+        for (int i = 0; i < NUM_IMAGES; ++i) {
             imageArray.viewed[i] = false;
         }
         // Eventually make the game end
+    }
+
+    // For some reason if Donut is displayed first, one of the diffs is almost impossible to see
+    while (imagesRemaining == NUM_IMAGES && value == Donut) {
+        value = QRandomGenerator::global()->bounded(NUM_IMAGES);
     }
 
     while (imageArray.viewed[value] == true && imagesRemaining != 0) {
