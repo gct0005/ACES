@@ -8,7 +8,7 @@ DifferenceItem::DifferenceItem(qreal x, qreal y, qreal width, qreal height, QGra
     Y = y;
 
     setBrush(Qt::transparent);
-    pen.setColor(Qt::red);
+    pen.setColor(Qt::transparent);
     pen.setWidth(4);
     setPen(pen);
     setAcceptHoverEvents(true);
@@ -26,7 +26,9 @@ bool DifferenceItem::correspondsTo(const DifferenceItem *other) const
 
 void DifferenceItem::highlight()
 {
-    setPen(QPen(Qt::green));
+    pen.setColor(Qt::red);
+    setPen(pen);
+
     highlighted = true;
     qDebug() << "highlight";
 }
@@ -41,7 +43,7 @@ void DifferenceItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void DifferenceItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    setBrush(QBrush(Qt::yellow));
+    //setBrush(QBrush(Qt::yellow));
     QGraphicsEllipseItem::hoverEnterEvent(event);
 }
 

@@ -7,16 +7,6 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Setup Ready form for user to start the game
-    form = new ReadyForm(this);
-
-    ui->stackedWidget->addWidget(form);
-    connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
-
-    // Set the ready form to be the visible widget
-    ui->stackedWidget->setCurrentIndex(1);
-
-
     gameTimer = new QTimer(this);
     connect(gameTimer, SIGNAL(timeout()), this, SLOT(advanceTimerDisplay()));
     connect(this, SIGNAL(gameFinished()), this, SLOT(endGame()));
@@ -267,6 +257,17 @@ void SpotTheDiff::updateItemLabels()
     ui->SpottedLabel->setText(found);
 }
 
+void SpotTheDiff::initGame()
+{
+    form = new ReadyForm(this);
+
+    ui->stackedWidget->addWidget(form);
+    connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
+
+    // Set the ready form to be the visible widget
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
 void SpotTheDiff::endGame()
 {
     gameTimer->stop();
@@ -373,13 +374,5 @@ void SpotTheDiff::on_homeButton_clicked()
 
 void SpotTheDiff::on_restartButton_clicked()
 {
-    //adjustSceneSizes();
-
-    form = new ReadyForm(this);     // TODO make this its own form with selections to replay current or go to new (Maybe add image selection screen?)
-
-    ui->stackedWidget->addWidget(form);
-    connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
-
-    ui->stackedWidget->setCurrentIndex(1);
-
+    initGame();    // make new method like this but with the restart menu instead of ready form
 }

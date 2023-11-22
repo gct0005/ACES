@@ -38,6 +38,7 @@ ACES::~ACES()
 void ACES::on_spotDiffButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(spotDiffGame);
+    spotDiffGame->initGame();
     //ui->stackedWidget->setCurrentIndex(1);
     // start game method call here
 
