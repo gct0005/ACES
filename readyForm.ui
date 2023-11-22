@@ -50,12 +50,12 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item alignment="Qt::AlignHCenter">
+      <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QLabel" name="helpLabel">
         <property name="minimumSize">
          <size>
           <width>1000</width>
-          <height>70</height>
+          <height>140</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -73,7 +73,7 @@
          <string notr="true">color: slategrey;</string>
         </property>
         <property name="text">
-         <string>You will see two images side by side. Click any differences you spot in either image to highlight them. See if you can spot all the differences in time.</string>
+         <string>You will see two images side by side. Click any differences you spot on either side to highlight them. Differences can be objects added or removed from either image, as well as objects being slightly different colors. See if you can spot all the differences in time.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -83,7 +83,7 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignHCenter">
+      <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
        <widget class="QPushButton" name="startButton">
         <property name="minimumSize">
          <size>
