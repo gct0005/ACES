@@ -27,12 +27,13 @@ bool DifferenceItem::correspondsTo(const DifferenceItem *other) const
 void DifferenceItem::highlight()
 {
     setPen(QPen(Qt::green));
+    highlighted = true;
     qDebug() << "highlight";
 }
 
 void DifferenceItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    setPen(QPen(Qt::green));
+    //setPen(QPen(Qt::green));
     emit differenceClicked();
     qDebug() << "differenceDetected";
     QGraphicsEllipseItem::mousePressEvent(event);

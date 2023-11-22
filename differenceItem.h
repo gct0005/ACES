@@ -28,6 +28,8 @@ public:
     qreal X;
     qreal Y;
 
+    bool highlighted = false;
+
 private:
     QPen pen;
 

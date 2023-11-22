@@ -16,8 +16,10 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
     // Set the ready form to be the visible widget
     ui->stackedWidget->setCurrentIndex(1);
 
-//    img selection = getNextImage();
-//    updateImages(selection);
+
+    gameTimer = new QTimer(this);
+    connect(gameTimer, SIGNAL(timeout()), this, SLOT(advanceTimerDisplay()));
+    connect(this, SIGNAL(gameFinished()), this, SLOT(endGame()));
 
     // Install event filters to prevent scrolling on images
     ui->imageView->viewport()->installEventFilter(this);
@@ -212,6 +214,8 @@ void SpotTheDiff::connectScenes()
     for (DifferenceItem* diffItem : differenceItems) {
             connect(diffItem, &DifferenceItem::differenceClicked, this, &SpotTheDiff::highlightCorrespondingItem);
     }
+
+    connect(this, SIGNAL(differenceFound()), this, SLOT(advanceDifferencesDisplay()));
 }
 
 void SpotTheDiff::highlightCorrespondingItem() {
@@ -221,6 +225,11 @@ void SpotTheDiff::highlightCorrespondingItem() {
     if (!clickedItem)
             return;
 
+    if (clickedItem->highlighted == false) {
+            emit differenceFound();
+
+    }
+
     // Highlight the corresponding item in the other scene
     if (imageScene.items().contains(clickedItem)) {
             // Item is in imageScene, find and highlight in diffScene
@@ -229,6 +238,7 @@ void SpotTheDiff::highlightCorrespondingItem() {
                 if (diffItem->correspondsTo(clickedItem)) {
                     // Highlight the item in diffScene
                     diffItem->highlight();
+                    clickedItem->highlight();
                     ui->diffView->viewport()->update();
                     break;
                 }
@@ -240,6 +250,7 @@ void SpotTheDiff::highlightCorrespondingItem() {
                 if (imageItem->correspondsTo(clickedItem)) {
                     // Highlight the item in imageScene
                     imageItem->highlight();
+                    clickedItem->highlight();
                     ui->imageView->viewport()->update();
                     break;
                 }
@@ -247,16 +258,39 @@ void SpotTheDiff::highlightCorrespondingItem() {
     }
 }
 
+void SpotTheDiff::updateItemLabels()
+{
+    QString remaining = QString("Remaining: %1").arg(itemsRemaining);
+    ui->RemainingLabel->setText(remaining);
+
+    QString found = QString("Spotted: %1").arg(itemsFound);
+    ui->SpottedLabel->setText(found);
+}
+
+void SpotTheDiff::endGame()
+{
+    gameTimer->stop();
+    qDebug() << "Game Over";
+
+    disconnect(this, SIGNAL(differenceFound()), this, SLOT(advanceDifferencesDisplay()));
+}
+
 void SpotTheDiff::StartGame()
 {
-    //adjustSceneSizes();
+    // if (bool restart == false) select = getNextImage();
+
+    // Set game widget to current viewed widget
     ui->stackedWidget->setCurrentWidget(ui->Game);
     qDebug() << "set widget to game";
 
+    // Remove old instance of the ready form
     ui->stackedWidget->removeWidget(form);
     delete form;
 
+    // Remove old difference items
     removeItems();
+
+    // Get the next image (this will change when reset screen implemented - top comment)
     img selection = getNextImage();
 
     updateImages(selection);
@@ -268,7 +302,49 @@ void SpotTheDiff::StartGame()
     loadDiffItems();
     connectScenes();
 
+    itemsRemaining = coords.coordinateList.size();
+    itemsFound = 0;
+    updateItemLabels();
 
+    countdownSeconds = GAME_LENGTH_SECONDS;
+    ui->TimerLabel->setText(GAME_MAX_TIME);
+    gameTimer->start(1000);
+
+}
+
+void SpotTheDiff::advanceDifferencesDisplay()
+{
+    itemsRemaining--;
+    itemsFound++;
+
+    updateItemLabels();
+
+    if (itemsRemaining == 0) {
+            emit gameFinished();
+            //return;
+    }
+
+
+}
+
+void SpotTheDiff::advanceTimerDisplay()
+{
+    if (countdownSeconds > 0) {
+            countdownSeconds--;
+
+            int minutes = countdownSeconds / 60;
+            int remainingSeconds = countdownSeconds % 60;
+
+            QString timeString = QString("%1:%2")
+                                     .arg(minutes, 2, 10, QLatin1Char('0'))
+                                     .arg(remainingSeconds, 2, 10, QLatin1Char('0'));
+
+            ui->TimerLabel->setText(timeString);
+    }
+    else {
+            gameTimer->stop();
+            emit countdownFinished();
+    }
 }
 
 
@@ -290,8 +366,8 @@ void SpotTheDiff::adjustSceneSizes(qreal scaleFactor)
 
 void SpotTheDiff::on_homeButton_clicked()
 {
+    endGame();
     emit homeClicked();
-    // pause game
 }
 
 

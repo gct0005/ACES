@@ -23,6 +23,9 @@ const int IMAGE_HEIGHT = 467;
 
 const int NUM_IMAGES = 10;
 
+const int GAME_LENGTH_SECONDS = 180;
+const QString GAME_MAX_TIME = "03:00";
+
 namespace Ui {
 class SpotTheDiff;
 }
@@ -104,15 +107,14 @@ public:
     void connectScenes();
     void highlightCorrespondingItem();
 
-    // GUI advancement methods
-    void advanceDifferencesDisplay();
-    void advanceTimerDisplay();
+
 
     // Game logic
-    void displayStartCountdown();   // TODO implement new ui class for intro countdown confirmation
+    void updateItemLabels();
+
     void initGame();    // Method potentially for when selecting std from menu and need to restart.
 
-    void endGame();
+
 
 private:
     Ui::SpotTheDiff *ui;
@@ -124,6 +126,11 @@ private:
     coordinates coords;     // list of difference placements
 
     int imagesRemaining = NUM_IMAGES;
+    int itemsRemaining;
+    int itemsFound;
+
+    QTimer *gameTimer;
+    int countdownSeconds;
 
     // Graphics Scenes
     QGraphicsScene imageScene;
@@ -151,9 +158,19 @@ protected:
 
 signals:
     void homeClicked();
+    void countdownFinished();
+    void gameFinished();
+
+    void differenceFound();
 
 private slots:
     void StartGame();
+    void endGame();
+
+    // GUI advancement methods
+    void advanceDifferencesDisplay();
+    void advanceTimerDisplay();
+
     void on_homeButton_clicked();
 
     void on_restartButton_clicked();
