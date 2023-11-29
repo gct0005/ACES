@@ -160,12 +160,15 @@ signals:
     void homeClicked();
     void countdownFinished();
     void gameFinished();
+    //void sessionComplete();   // For when all images have been exhausted
 
     void differenceFound();
 
 private slots:
     void StartGame();
     void endGame();
+    void exitGame();
+    //void endSession();    // For when all images have been exhausted
 
     // GUI advancement methods
     void advanceDifferencesDisplay();

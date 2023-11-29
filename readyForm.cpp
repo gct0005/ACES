@@ -13,11 +13,33 @@ ReadyForm::ReadyForm(QWidget *parent) :
     // Set up countdown timer
     countdownTimer = new QTimer(this);
     connect(countdownTimer, SIGNAL(timeout()), this, SLOT(updateCountdown()));
+
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 ReadyForm::~ReadyForm()
 {
     delete ui;
+}
+
+void ReadyForm::changeScreen(int index)
+{
+    this->ui->stackedWidget->setCurrentIndex(index);
+}
+
+void ReadyForm::changeEndLabel(QString msg)
+{
+    ui->endLabel->setText(msg);
+}
+
+void ReadyForm::changeResultLabel(QString msg)
+{
+    ui->resultsLabel->setText(msg);
+}
+
+bool ReadyForm::getRestartValue()
+{
+    return restart;
 }
 
 void ReadyForm::onStartButtonClicked()
@@ -26,8 +48,7 @@ void ReadyForm::onStartButtonClicked()
     ui->countdownFrame->show();     // Show the countdown timer
 
     countdownValue = 3;
-    //countdownTimer->start(1000);    // 1 second interval
-    countdownTimer->start(50); // faster for development
+    countdownTimer->start(TIMER_INTERVAL); // faster for development
     ui->countdownLabel->setText(QString::number(countdownValue));
     qDebug() << "Countdown started";
 }
@@ -41,6 +62,7 @@ void ReadyForm::updateCountdown()
 
     // Update the countdown label
     ui->countdownLabel->setText(QString::number(countdownValue));
+    ui->resultsLabel->setText(QString::number(countdownValue));
 
     // If countdown is done, switch to the game screen
     if (countdownValue < 0) {
@@ -49,5 +71,33 @@ void ReadyForm::updateCountdown()
         qDebug() << "start game";
     }
 
+}
+
+
+void ReadyForm::on_restartButton_clicked()
+{
+    restart = true;
+    changeScreen(0);    // Show start screen
+}
+
+
+void ReadyForm::on_startNewButton_clicked()
+{
+    changeScreen(0);    // Show start screen
+}
+
+
+void ReadyForm::on_exitButton_clicked()
+{
+    emit homeButtonClicked();
+}
+
+
+void ReadyForm::on_nextButton_clicked()
+{
+    countdownValue = 3;
+    countdownTimer->start(TIMER_INTERVAL); // faster for development
+    ui->resultsLabel->setText(QString::number(countdownValue));
+    qDebug() << "Countdown started";
 }
 

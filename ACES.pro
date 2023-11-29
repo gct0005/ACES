@@ -12,7 +12,6 @@ SOURCES += \
     ACES.cpp \
     differenceItem.cpp \
     differenceLocations.cpp \
-    endForm.cpp \
     main.cpp \
     readyForm.cpp \
     spotTheDiff.cpp
@@ -21,13 +20,11 @@ HEADERS += \
     ACES.h \
     differenceItem.h \
     differenceLocations.h \
-    endForm.h \
     readyForm.h \
     spotTheDiff.h
 
 FORMS += \
     ACES.ui \
-    endForm.ui \
     readyForm.ui \
     spotTheDiff.ui
 

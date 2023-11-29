@@ -270,6 +270,7 @@ void SpotTheDiff::initGame()
     connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
 
     // Set the ready form to be the visible widget
+    //form
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -279,11 +280,47 @@ void SpotTheDiff::endGame()
     qDebug() << "Game Over";
 
     disconnect(this, SIGNAL(differenceFound()), this, SLOT(advanceDifferencesDisplay()));
+
+    form = new ReadyForm(this);
+    form->changeScreen(2);
+
+    int timeTaken = GAME_LENGTH_SECONDS - countdownSeconds;
+
+    int minutes = timeTaken / 60;
+    int seconds = timeTaken % 60;
+
+    QString found = QString("You found %1 differences in %2:%3")
+                        .arg(itemsFound)
+                        .arg(minutes, 1, 10, QLatin1Char('0'))
+                        .arg(seconds, 2, 10, QLatin1Char('0'));
+
+    form->changeResultLabel(found);
+
+    connect(form, SIGNAL(homeButtonClicked()), this, SLOT(exitGame()));
+    connect(form, SIGNAL(startGame()), this, SLOT(StartGame()));
+
+    // Change display if user didn't find all differences
+    if (itemsRemaining > 0)
+    {
+            form->changeEndLabel("Almost!");
+            // hide restart button
+    }
+
+    ui->stackedWidget->addWidget(form);
+    ui->stackedWidget->setCurrentWidget(form);
+
+}
+
+void SpotTheDiff::exitGame()
+{
+    delete form;
+    emit homeClicked();
 }
 
 void SpotTheDiff::StartGame()
 {
-    // if (bool restart == false) select = getNextImage();
+    // Get new image if restart has not been selected
+    if (form->getRestartValue() == false) select = getNextImage();
 
     // Set game widget to current viewed widget
     ui->stackedWidget->setCurrentWidget(ui->Game);
@@ -296,11 +333,9 @@ void SpotTheDiff::StartGame()
     // Remove old difference items
     removeItems();
 
-    // Get the next image (this will change when reset screen implemented - top comment)
-    img selection = getNextImage();
-
-    updateImages(selection);
-    initializeLists(selection);
+    // Update images based on selection
+    updateImages(select);
+    initializeLists(select);
 
     scaleDiffPoints();
     centerDiffOrigins();
@@ -314,7 +349,7 @@ void SpotTheDiff::StartGame()
 
     countdownSeconds = GAME_LENGTH_SECONDS;
     ui->TimerLabel->setText(GAME_MAX_TIME);
-    gameTimer->start(1000);
+    gameTimer->start(TIMER_INTERVAL);
 
 }
 
@@ -329,7 +364,6 @@ void SpotTheDiff::advanceDifferencesDisplay()
             emit gameFinished();
             //return;
     }
-
 
 }
 
@@ -349,7 +383,7 @@ void SpotTheDiff::advanceTimerDisplay()
     }
     else {
             gameTimer->stop();
-            emit countdownFinished();
+            emit gameFinished();
     }
 }
 
@@ -373,11 +407,12 @@ void SpotTheDiff::adjustSceneSizes(qreal scaleFactor)
 void SpotTheDiff::on_homeButton_clicked()
 {
     endGame();
-    emit homeClicked();
+    exitGame();
 }
 
 
 void SpotTheDiff::on_restartButton_clicked()
 {
-    initGame();    // make new method like this but with the restart menu instead of ready form
+    initGame();
+    form->changeScreen(1);
 }
