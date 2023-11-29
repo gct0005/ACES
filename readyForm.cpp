@@ -48,7 +48,7 @@ void ReadyForm::onStartButtonClicked()
     ui->countdownFrame->show();     // Show the countdown timer
 
     countdownValue = 3;
-    countdownTimer->start(TIMER_INTERVAL); // faster for development
+    countdownTimer->start(TIMER_INTERVAL);
     ui->countdownLabel->setText(QString::number(countdownValue));
     qDebug() << "Countdown started";
 }
@@ -60,8 +60,9 @@ void ReadyForm::updateCountdown()
     // Decrease the countdown value
     countdownValue--;
 
-    // Update the countdown label
+    // Update the countdown labels
     ui->countdownLabel->setText(QString::number(countdownValue));
+    ui->countdownLabel2->setText(QString::number(countdownValue));
     ui->resultsLabel->setText(QString::number(countdownValue));
 
     // If countdown is done, switch to the game screen
@@ -77,13 +78,20 @@ void ReadyForm::updateCountdown()
 void ReadyForm::on_restartButton_clicked()
 {
     restart = true;
-    changeScreen(0);    // Show start screen
+
+    countdownValue = 3;
+    countdownTimer->start(TIMER_INTERVAL);
+    ui->countdownLabel2->setText(QString::number(countdownValue));
+    qDebug() << "Countdown started";
 }
 
 
 void ReadyForm::on_startNewButton_clicked()
 {
-    changeScreen(0);    // Show start screen
+    countdownValue = 3;
+    countdownTimer->start(TIMER_INTERVAL);
+    ui->countdownLabel2->setText(QString::number(countdownValue));
+    qDebug() << "Countdown started";
 }
 
 
@@ -96,7 +104,12 @@ void ReadyForm::on_exitButton_clicked()
 void ReadyForm::on_nextButton_clicked()
 {
     countdownValue = 3;
-    countdownTimer->start(TIMER_INTERVAL); // faster for development
+    countdownTimer->start(TIMER_INTERVAL);
+    QFont font;
+    font.setPointSize(80);
+    font.setBold(true);
+    font.setItalic(true);
+    ui->resultsLabel->setFont(font);
     ui->resultsLabel->setText(QString::number(countdownValue));
     qDebug() << "Countdown started";
 }

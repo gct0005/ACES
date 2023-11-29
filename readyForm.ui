@@ -38,7 +38,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="startPage">
       <property name="minimumSize">
@@ -253,12 +253,12 @@ QPushButton#startButton:hover {
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
-       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+       <item alignment="Qt::AlignHCenter">
         <widget class="QFrame" name="frame">
          <property name="minimumSize">
           <size>
            <width>260</width>
-           <height>150</height>
+           <height>300</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -274,6 +274,38 @@ QPushButton#startButton:hover {
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QLabel" name="countdownLabel2">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>120</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>120</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>80</pointsize>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: slategrey;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QPushButton" name="restartButton">
             <property name="minimumSize">
