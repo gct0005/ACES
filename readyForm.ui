@@ -38,9 +38,15 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="startPage">
+      <property name="minimumSize">
+       <size>
+        <width>1920</width>
+        <height>1080</height>
+       </size>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <widget class="QFrame" name="buttonFrame">
@@ -240,6 +246,12 @@ QPushButton#startButton:hover {
       </layout>
      </widget>
      <widget class="QWidget" name="selectPage">
+      <property name="minimumSize">
+       <size>
+        <width>1920</width>
+        <height>1080</height>
+       </size>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
         <widget class="QFrame" name="frame">
@@ -346,6 +358,12 @@ QPushButton#startNewButton:hover {
       </layout>
      </widget>
      <widget class="QWidget" name="endPage">
+      <property name="minimumSize">
+       <size>
+        <width>1920</width>
+        <height>1080</height>
+       </size>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <item alignment="Qt::AlignHCenter|Qt::AlignTop">
         <widget class="QFrame" name="frame_3">

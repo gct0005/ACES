@@ -14,7 +14,9 @@ ACES::ACES(QWidget *parent)
     QRect availableGeometry = primaryScreen->availableGeometry();
 
     int verticalPixelSize = availableGeometry.height();
+    int horizontalPixelSize = availableGeometry.width();
     qDebug() << verticalPixelSize;
+    qDebug() << horizontalPixelSize;
 
     if (verticalPixelSize >= 1300) {
         // change image scale
