@@ -6,7 +6,10 @@ ReadyForm::ReadyForm(QWidget *parent) :
     ui(new Ui::ReadyForm)
 {
     ui->setupUi(this);
+
+    // Hide UI elements that are conditional
     ui->countdownFrame->hide();
+    ui->restartButton2->hide();
 
     connect(ui->startButton, SIGNAL(clicked()), this, SLOT(onStartButtonClicked()));
 
@@ -37,6 +40,11 @@ void ReadyForm::changeResultLabel(QString msg)
     ui->resultsLabel->setText(msg);
 }
 
+void ReadyForm::showRestartOnGameEnd()
+{
+    ui->restartButton2->show();
+}
+
 bool ReadyForm::getRestartValue()
 {
     return restart;
@@ -55,8 +63,6 @@ void ReadyForm::onStartButtonClicked()
 
 void ReadyForm::updateCountdown()
 {
-    qDebug() << "Updating countdown";
-
     // Decrease the countdown value
     countdownValue--;
 
@@ -103,6 +109,22 @@ void ReadyForm::on_exitButton_clicked()
 
 void ReadyForm::on_nextButton_clicked()
 {
+    countdownValue = 3;
+    countdownTimer->start(TIMER_INTERVAL);
+    QFont font;
+    font.setPointSize(80);
+    font.setBold(true);
+    font.setItalic(true);
+    ui->resultsLabel->setFont(font);
+    ui->resultsLabel->setText(QString::number(countdownValue));
+    qDebug() << "Countdown started";
+}
+
+
+void ReadyForm::on_restartButton2_clicked()
+{
+    restart = true;
+
     countdownValue = 3;
     countdownTimer->start(TIMER_INTERVAL);
     QFont font;

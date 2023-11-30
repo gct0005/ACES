@@ -38,7 +38,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="startPage">
       <property name="minimumSize">
@@ -252,7 +252,7 @@ QPushButton#startButton:hover {
         <height>1080</height>
        </size>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_9">
        <item alignment="Qt::AlignHCenter">
         <widget class="QFrame" name="frame">
          <property name="minimumSize">
@@ -396,7 +396,7 @@ QPushButton#startNewButton:hover {
         <height>1080</height>
        </size>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_9">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item alignment="Qt::AlignHCenter|Qt::AlignTop">
         <widget class="QFrame" name="frame_3">
          <property name="minimumSize">
@@ -489,13 +489,13 @@ QPushButton#startNewButton:hover {
             <property name="minimumSize">
              <size>
               <width>260</width>
-              <height>150</height>
+              <height>200</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>260</width>
-              <height>150</height>
+              <height>200</height>
              </size>
             </property>
             <property name="frameShape">
@@ -505,6 +505,45 @@ QPushButton#startNewButton:hover {
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QPushButton" name="restartButton2">
+               <property name="minimumSize">
+                <size>
+                 <width>240</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>240</width>
+                 <height>34</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>17</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton#restartButton2 { 
+	background-color: slategrey; 
+	border-radius: 20px;
+	color: black; 
+}
+
+QPushButton#restartButton2:hover { 
+	background-color: rgb(142, 158, 174); 
+	border-radius: 20px;
+	border: 2px solid slategrey;
+}
+
+</string>
+               </property>
+               <property name="text">
+                <string>Restart This Image</string>
+               </property>
+              </widget>
+             </item>
              <item>
               <widget class="QPushButton" name="nextButton">
                <property name="minimumSize">

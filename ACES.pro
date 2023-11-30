@@ -13,6 +13,7 @@ SOURCES += \
     differenceItem.cpp \
     differenceLocations.cpp \
     main.cpp \
+    measurementModule.cpp \
     readyForm.cpp \
     spotTheDiff.cpp
 
@@ -20,6 +21,7 @@ HEADERS += \
     ACES.h \
     differenceItem.h \
     differenceLocations.h \
+    measurementModule.h \
     readyForm.h \
     spotTheDiff.h
 

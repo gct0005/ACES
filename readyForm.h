@@ -21,6 +21,7 @@ public:
     void changeScreen(int index);
     void changeEndLabel(QString msg);
     void changeResultLabel(QString msg);
+    void showRestartOnGameEnd();
     bool getRestartValue();
 
 signals:
@@ -38,6 +39,8 @@ private slots:
     void on_exitButton_clicked();
 
     void on_nextButton_clicked();
+
+    void on_restartButton2_clicked();
 
 private:
     Ui::ReadyForm *ui;

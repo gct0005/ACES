@@ -8,8 +8,12 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
     ui->setupUi(this);
 
     gameTimer = new QTimer(this);
+    measurement = new MeasurementModule(this);
+
     connect(gameTimer, SIGNAL(timeout()), this, SLOT(advanceTimerDisplay()));
     connect(this, SIGNAL(gameFinished()), this, SLOT(endGame()));
+    connect(this, SIGNAL(gameStarted()), measurement, SLOT(startCount()));
+    connect(this, SIGNAL(differenceFound()), measurement, SLOT(logEvent()));
 
     // Install event filters to prevent scrolling on images
     ui->imageView->viewport()->installEventFilter(this);
@@ -260,6 +264,8 @@ void SpotTheDiff::updateItemLabels()
 
     QString found = QString("Spotted: %1").arg(itemsFound);
     ui->SpottedLabel->setText(found);
+
+    qDebug() << "updating labels";
 }
 
 void SpotTheDiff::initGame()
@@ -279,7 +285,6 @@ void SpotTheDiff::endGame()
     gameTimer->stop();
     qDebug() << "Game Over";
 
-    disconnect(this, SIGNAL(differenceFound()), this, SLOT(advanceDifferencesDisplay()));
 
     form = new ReadyForm(this);
     form->changeScreen(2);
@@ -303,7 +308,7 @@ void SpotTheDiff::endGame()
     if (itemsRemaining > 0)
     {
             form->changeEndLabel("Almost!");
-            // hide restart button
+            form->showRestartOnGameEnd();
     }
 
     ui->stackedWidget->addWidget(form);
@@ -321,6 +326,8 @@ void SpotTheDiff::StartGame()
 {
     // Get new image if restart has not been selected
     if (form->getRestartValue() == false) select = getNextImage();
+
+    disconnect(this, SIGNAL(differenceFound()), this, SLOT(advanceDifferencesDisplay()));
 
     // Set game widget to current viewed widget
     ui->stackedWidget->setCurrentWidget(ui->Game);
@@ -350,6 +357,8 @@ void SpotTheDiff::StartGame()
     countdownSeconds = GAME_LENGTH_SECONDS;
     ui->TimerLabel->setText(GAME_MAX_TIME);
     gameTimer->start(TIMER_INTERVAL);
+
+    emit gameStarted();
 
 }
 

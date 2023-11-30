@@ -30,7 +30,6 @@ void DifferenceItem::highlight()
     setPen(pen);
 
     highlighted = true;
-    qDebug() << "highlight";
 }
 
 void DifferenceItem::mousePressEvent(QGraphicsSceneMouseEvent *event)

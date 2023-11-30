@@ -16,6 +16,7 @@
 #include "differenceLocations.h"
 #include "differenceItem.h"
 #include "readyForm.h"
+#include "measurementModule.h"
 
 // Image dimensions - image is 350 x 467 px at 100%
 const int IMAGE_WIDTH = 350;
@@ -121,6 +122,8 @@ private:
 
     ReadyForm *form;
 
+    MeasurementModule *measurement;
+
     images imageArray;      // Array of selectable images
     img select;             // selection variable for initlists func
     coordinates coords;     // list of difference placements
@@ -159,6 +162,7 @@ protected:
 signals:
     void homeClicked();
     void countdownFinished();
+    void gameStarted();
     void gameFinished();
     //void sessionComplete();   // For when all images have been exhausted
 
