@@ -299,6 +299,8 @@ void SpotTheDiff::endGame()
                         .arg(minutes, 1, 10, QLatin1Char('0'))
                         .arg(seconds, 2, 10, QLatin1Char('0'));
 
+    qDebug() << found;
+
     form->changeResultLabel(found);
 
     connect(form, SIGNAL(homeButtonClicked()), this, SLOT(exitGame()));
