@@ -6,7 +6,7 @@ ACES::ACES(QWidget *parent)
     , ui(new Ui::ACES)
 {
     ui->setupUi(this);
-    this->showFullScreen();   // TODO make game fullscreen and add quit button to menu
+    this->showFullScreen();
 
     spotDiffGame = new SpotTheDiff(this);
 
@@ -17,6 +17,9 @@ ACES::ACES(QWidget *parent)
     int horizontalPixelSize = availableGeometry.width();
     qDebug() << verticalPixelSize;
     qDebug() << horizontalPixelSize;
+
+    qreal pixelRatio = QApplication::primaryScreen()->devicePixelRatio();
+    qDebug() << pixelRatio;
 
     if (verticalPixelSize >= 1300) {
         // change image scale

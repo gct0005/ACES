@@ -12,8 +12,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1920</width>
-    <height>1080</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -33,22 +33,22 @@
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="minimumSize">
       <size>
-       <width>1920</width>
-       <height>1080</height>
+       <width>0</width>
+       <height>0</height>
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="startPage">
       <property name="minimumSize">
        <size>
-        <width>1920</width>
-        <height>1080</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
+       <item alignment="Qt::AlignHCenter">
         <widget class="QFrame" name="buttonFrame">
          <property name="minimumSize">
           <size>
@@ -144,7 +144,7 @@ QPushButton#startButton:hover {
          </layout>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignHCenter">
         <widget class="QFrame" name="countdownFrame">
          <property name="minimumSize">
           <size>
@@ -248,8 +248,8 @@ QPushButton#startButton:hover {
      <widget class="QWidget" name="selectPage">
       <property name="minimumSize">
        <size>
-        <width>1920</width>
-        <height>1080</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -392,8 +392,8 @@ QPushButton#startNewButton:hover {
      <widget class="QWidget" name="endPage">
       <property name="minimumSize">
        <size>
-        <width>1920</width>
-        <height>1080</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
