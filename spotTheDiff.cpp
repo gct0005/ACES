@@ -264,8 +264,6 @@ void SpotTheDiff::updateItemLabels()
 
     QString found = QString("Spotted: %1").arg(itemsFound);
     ui->SpottedLabel->setText(found);
-
-    qDebug() << "updating labels";
 }
 
 void SpotTheDiff::initGame()
