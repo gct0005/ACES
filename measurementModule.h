@@ -25,6 +25,7 @@ signals:
 private:
     QFile logFile;
     QDateTime lastEventTime;
+    QDateTime gameStartTime;
 
 };
 

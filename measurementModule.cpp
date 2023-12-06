@@ -6,7 +6,7 @@ MeasurementModule::MeasurementModule(QObject *parent)
     logFile.setFileName("event_log.csv");
     logFile.open(QIODevice::WriteOnly | QIODevice::Text);
 
-    writeCSV("TimeSinceLastEvent (ms)");
+    writeCSV("TimeSinceLastEvent (ms), TotalTime (ms)");
 
     connect(this, &MeasurementModule::gameStarted, this, &MeasurementModule::startCount);
 }
@@ -26,13 +26,18 @@ void MeasurementModule::logEvent()
     // Update the last event time
     lastEventTime = currentTime;
 
+    // Calculate the total time since the start of the game
+    qint64 totalTime = gameStartTime.msecsTo(currentTime);
+
+
     // Write the time since the last event to the CSV file
-    writeCSV(QString::number(timeSinceLastEvent));
+    writeCSV(QString::number(timeSinceLastEvent) + "," + QString::number(totalTime));
 }
 
 void MeasurementModule::startCount()
 {
     lastEventTime = QDateTime::currentDateTime();
+    gameStartTime = QDateTime::currentDateTime();
     writeCSV("\n");
 }
 
