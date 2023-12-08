@@ -13,6 +13,7 @@ SpotTheDiff::SpotTheDiff(QWidget *parent) :
     connect(gameTimer, SIGNAL(timeout()), this, SLOT(advanceTimerDisplay()));
     connect(this, SIGNAL(gameFinished()), this, SLOT(endGame()));
     connect(this, SIGNAL(gameStarted()), measurement, SLOT(startCount()));
+    connect(this, SIGNAL(gameStarted()), measurement, SLOT(logEvent()));
     connect(this, SIGNAL(differenceFound()), measurement, SLOT(logEvent()));
 
     // Install event filters to prevent scrolling on images
@@ -40,7 +41,8 @@ void SpotTheDiff::updateDiffScene(const QPixmap &pixmap)
 // Gets the next spot the difference image to be displayed
 SpotTheDiff::img SpotTheDiff::getNextImage()
 {
-    int value = QRandomGenerator::global()->bounded(NUM_IMAGES);
+    //int value = QRandomGenerator::global()->bounded(NUM_IMAGES);
+    static int value = 0;
 
     if (imagesRemaining == 0) {
         // Currently reset the images viewed status
@@ -49,22 +51,25 @@ SpotTheDiff::img SpotTheDiff::getNextImage()
         for (int i = 0; i < NUM_IMAGES; ++i) {
             imageArray.viewed[i] = false;
         }
+
+        value = 0;
         // Eventually make the game end
     }
 
     // For some reason if Donut is displayed first, one of the diffs is almost impossible to see
-    while (imagesRemaining == NUM_IMAGES && value == Donut) {
-        value = QRandomGenerator::global()->bounded(NUM_IMAGES);
-    }
+//    while (imagesRemaining == NUM_IMAGES && value == Donut) {
+//        value = QRandomGenerator::global()->bounded(NUM_IMAGES);
+//    }
 
-    while (imageArray.viewed[value] == true && imagesRemaining != 0) {
-       value = QRandomGenerator::global()->bounded(NUM_IMAGES);
-    }
+//    while (imageArray.viewed[value] == true && imagesRemaining != 0) {
+//       value = QRandomGenerator::global()->bounded(NUM_IMAGES);
+//    }
+
 
     imageArray.viewed[value] = true;
     imagesRemaining--;
 
-    return static_cast<img>(value);
+    return static_cast<img>(value++);
 }
 
 void SpotTheDiff::updateImages(img select)
