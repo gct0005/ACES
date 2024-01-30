@@ -1,4 +1,5 @@
 #include "ACES.h"
+#include "tetriswindow.h"
 
 #include <QApplication>
 
